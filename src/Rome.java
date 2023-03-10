@@ -13,6 +13,8 @@ public class Rome {
         } while (enterNumber.length() == 0);
 
         char[] sArray = enterNumber.toCharArray();
+
+
         int[] sToIntArray = new int[sArray.length];
 
         for (int i = 0; i < 7; i++) {
@@ -22,6 +24,12 @@ public class Rome {
                 }
             }
         }
+        int[] newArray = new int[sToIntArray.length + 1];
+        System.arraycopy(sToIntArray, 0, newArray, 0, sToIntArray.length);
+        sToIntArray = newArray;
+        sToIntArray[sToIntArray.length - 1] = 0;
+
+
         int finalNumber = 0;
         int i = 0;
         do {
@@ -29,9 +37,9 @@ public class Rome {
                 finalNumber = finalNumber + ((sToIntArray[i] - sToIntArray[i + 1]) * -1);
                 i++;
             }
-            else finalNumber = sToIntArray[i];
+            else finalNumber = finalNumber + sToIntArray[i];
             i++;
-        } while (i < sToIntArray.length);
+        } while (i < sToIntArray.length - 1);
         System.out.println(finalNumber);
     }
 }
