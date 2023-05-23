@@ -1,0 +1,23 @@
+Index: src/Rome.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Scanner;\r\n\r\npublic class Rome {\r\n    public static void main(String[] args) {\r\n        String enterNumber; // M CM XC IV 1994\r\n        char[] rome = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};\r\n        int[] arabic = {1, 5, 10, 50, 100, 500, 1000};\r\n\r\n        Scanner scanner = new Scanner(System.in);\r\n        do {\r\n            System.out.println(\"Enter the rome number\");\r\n            enterNumber = scanner.nextLine();\r\n        } while (enterNumber.length() == 0);\r\n\r\n        char[] sArray = enterNumber.toCharArray();\r\n        int [] sArrayForInt = new int [sArray.length];\r\n\r\n        for (int i = 0; i < 7; i++) {\r\n            for (int ii = 0; ii < sArray.length; ii++) {\r\n                if (sArray [ii] == rome [i]) {\r\n                    sArrayForInt[ii] = arabic [i];\r\n                }\r\n            }\r\n        }\r\n\r\n        int finalInteger = 0;\r\n        for (int i = 0; i <  sArrayForInt.length; i++) {\r\n            if ((sArrayForInt[i] - sArrayForInt[i + 1]) < 0){\r\n                finalInteger = finalInteger + ((sArrayForInt[i] - sArrayForInt[i + 1]) * - 1);\r\n                i++;\r\n            }\r\n            else finalInteger += sArrayForInt[i];\r\n        }\r\n        System.out.println(finalInteger);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Rome.java b/src/Rome.java
+--- a/src/Rome.java	
++++ b/src/Rome.java	
+@@ -25,7 +25,11 @@
+ 
+         int finalInteger = 0;
+         for (int i = 0; i <  sArrayForInt.length; i++) {
+-            if ((sArrayForInt[i] - sArrayForInt[i + 1]) < 0){
++            if (i == sArrayForInt.length - 1) {
++                finalInteger += sArrayForInt[i];
++                break;
++            }
++            else if ((sArrayForInt[i] - sArrayForInt[i + 1]) < 0){
+                 finalInteger = finalInteger + ((sArrayForInt[i] - sArrayForInt[i + 1]) * - 1);
+                 i++;
+             }
